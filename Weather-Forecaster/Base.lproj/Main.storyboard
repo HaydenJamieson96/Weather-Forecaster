@@ -88,7 +88,7 @@
                                 <rect key="frame" x="0.0" y="300" width="375" height="367"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="91" id="unm-7V-Jmd">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="weatherCell" rowHeight="91" id="unm-7V-Jmd" customClass="WeatherCell" customModule="Weather_Forecaster" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="unm-7V-Jmd" id="tWE-0P-MvF">
@@ -153,6 +153,14 @@
                                                 <constraint firstItem="FY3-hS-Yfl" firstAttribute="top" secondItem="tWE-0P-MvF" secondAttribute="topMargin" constant="10" id="ogc-1U-8MU"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="dayLbl" destination="f9c-Q4-r0m" id="eEm-aB-2eP"/>
+                                            <outlet property="highTempLbl" destination="C0s-mA-Xhc" id="le3-Ns-iSO"/>
+                                            <outlet property="lowTempLbl" destination="GoP-r6-mdi" id="wQd-Yf-BHw"/>
+                                            <outlet property="weatherImg" destination="FY3-hS-Yfl" id="zax-Or-Kbs"/>
+                                            <outlet property="weatherTypelbl" destination="hrk-yT-ODM" id="PkN-PK-D1L"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

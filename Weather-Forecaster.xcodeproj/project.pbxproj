@@ -12,6 +12,7 @@
 		1019D5B12028695400910A55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1019D5AF2028695400910A55 /* Main.storyboard */; };
 		1019D5B32028695400910A55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1019D5B22028695400910A55 /* Assets.xcassets */; };
 		1019D5B62028695400910A55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1019D5B42028695400910A55 /* LaunchScreen.storyboard */; };
+		1019D5C12028725600910A55 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1019D5C02028725600910A55 /* WeatherCell.swift */; };
 		7867177F229FCCB241BF6415 /* Pods_Weather_Forecaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 717C6315D8C9B7299153B094 /* Pods_Weather_Forecaster.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 		1019D5B22028695400910A55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1019D5B52028695400910A55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1019D5B72028695400910A55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1019D5C02028725600910A55 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		101E0CADA7EE1A78529257BE /* Pods-Weather-Forecaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-Forecaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-Weather-Forecaster/Pods-Weather-Forecaster.release.xcconfig"; sourceTree = "<group>"; };
 		34DC2D3667C115225B5F5A3F /* Pods-Weather-Forecaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-Forecaster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Weather-Forecaster/Pods-Weather-Forecaster.debug.xcconfig"; sourceTree = "<group>"; };
 		717C6315D8C9B7299153B094 /* Pods_Weather_Forecaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_Forecaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +86,7 @@
 		1019D5BE2028698B00910A55 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1019D5C02028725600910A55 /* WeatherCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			files = (
 				1019D5AE2028695400910A55 /* WeatherVC.swift in Sources */,
 				1019D5AC2028695400910A55 /* AppDelegate.swift in Sources */,
+				1019D5C12028725600910A55 /* WeatherCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
