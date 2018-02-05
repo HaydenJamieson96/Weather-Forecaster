@@ -21,9 +21,11 @@ class WeatherVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        DataService.instance.downloadWeatherDetails { (success) in
+            
+        }
     }
-
-    
 }
 
 extension WeatherVC: UITableViewDelegate, UITableViewDataSource {
@@ -33,11 +35,12 @@ extension WeatherVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell")
+        return cell!
     }
     
     
