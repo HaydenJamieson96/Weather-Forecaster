@@ -13,7 +13,7 @@ class Weather {
     private var _cityName: String!
     private var _date: String!
     private var _weatherType: String!
-    private var _currentTemp: String!
+    private var _currentTemp: Double!
     
     var cityName: String {
         return _cityName ?? ""
@@ -34,13 +34,12 @@ class Weather {
         return _weatherType ?? ""
     }
     
-    var currentTemp: String {
-        return _currentTemp ?? ""
+    var currentTemp: Double {
+        return _currentTemp ?? 0.0
     }
     
-    init(cityName: String, date: String, weatherType: String, currentTemp: String) {
+    init(cityName: String, weatherType: String, currentTemp: Double) {
         self._cityName = cityName
-        self._date = date
         self._weatherType = weatherType
         self._currentTemp = currentTemp
     }

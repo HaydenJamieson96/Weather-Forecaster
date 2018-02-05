@@ -16,5 +16,9 @@ class WeatherCell: UITableViewCell {
     @IBOutlet weak var highTempLbl: UILabel!
     @IBOutlet weak var lowTempLbl: UILabel!
     
+    func configureCell(withWeatherObject weather: Weather) {
+       
+    }
+    
 
 }
