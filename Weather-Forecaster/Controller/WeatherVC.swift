@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class WeatherVC: UIViewController {
     
@@ -22,10 +23,16 @@ class WeatherVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        DataService.instance.downloadWeatherDetails { (success) in
-            self.updateMainUI()
+        DispatchQueue.global(qos: .background).async {
+            DataService.instance.downloadWeatherDetails { (success) in
+                DataService.instance.downloadForecastData { (success) in
+                    DispatchQueue.main.async {
+                        self.updateMainUI()
+                        self.tableView.reloadData()
+                    }
+                }
+            }
         }
-        
     }
     
     func updateMainUI() {
@@ -35,8 +42,9 @@ class WeatherVC: UIViewController {
         weatherType.text = weatherObj.weatherType
         locationLbl.text = weatherObj.cityName
         imgView.image = UIImage(named: weatherObj.weatherType)
-        
     }
+    
+    
 }
 
 extension WeatherVC: UITableViewDelegate, UITableViewDataSource {
@@ -46,15 +54,13 @@ extension WeatherVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataService.instance.weatherArray.count
+        return DataService.instance.forecasts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell") as? WeatherCell else {return UITableViewCell()}
-        
+        cell.configureCell(withForecastObject: DataService.instance.forecasts[indexPath.row])
         return cell
     }
-    
-    
 }
 

@@ -14,7 +14,8 @@ class DataService {
     private init() {}
     
     var weatherArray = [Weather]()
-    
+    var forecasts = [Forecast]()
+
     static let instance = DataService()
     
     func downloadWeatherDetails(completed: @escaping DownloadComplete) {
@@ -46,5 +47,29 @@ class DataService {
                 
             }
         }
+    }
+    
+    func downloadForecastData(completed: @escaping DownloadComplete) {
+        if let forecastURL = URL(string: FORECAST_URL) {
+            Alamofire.request(forecastURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+                if response.result.error == nil {
+                    let result = response.result.value
+                    
+                    if let dict = result as? Dictionary<String, Any> {
+                        if let list = dict["list"] as? [Dictionary<String, Any>] {
+                            for obj in list {
+                                let forecast = Forecast(weatherDict: obj)
+                                self.forecasts.append(forecast)
+                            }
+                        }
+                    }
+                    completed(true)
+                } else {
+                    print("error")
+                    completed(false)
+                }
+            }
+        }
+        
     }
 }
