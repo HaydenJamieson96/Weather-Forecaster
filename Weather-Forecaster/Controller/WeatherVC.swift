@@ -18,21 +18,25 @@ class WeatherVC: UIViewController {
     @IBOutlet weak var weatherType: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         
-        DispatchQueue.global(qos: .background).async {
-            DataService.instance.downloadWeatherDetails { (success) in
-                DataService.instance.downloadForecastData { (success) in
-                    DispatchQueue.main.async {
-                        self.updateMainUI()
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-        }
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        locationAuthStatus()
     }
     
     func updateMainUI() {
@@ -42,6 +46,27 @@ class WeatherVC: UIViewController {
         weatherType.text = weatherObj.weatherType
         locationLbl.text = weatherObj.cityName
         imgView.image = UIImage(named: weatherObj.weatherType)
+    }
+    
+    func locationAuthStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            currentLocation = locationManager.location
+            LocationServices.instance.configureLatAndLong(withLocation: currentLocation)
+           
+            DispatchQueue.global(qos: .background).async {
+                DataService.instance.downloadWeatherDetails { (success) in
+                    DataService.instance.downloadForecastData { (success) in
+                        DispatchQueue.main.async {
+                            self.updateMainUI()
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            }
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+            locationAuthStatus()
+        }
     }
     
     
@@ -62,5 +87,9 @@ extension WeatherVC: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(withForecastObject: DataService.instance.forecasts[indexPath.row])
         return cell
     }
+}
+
+extension WeatherVC: CLLocationManagerDelegate {
+    
 }
 
